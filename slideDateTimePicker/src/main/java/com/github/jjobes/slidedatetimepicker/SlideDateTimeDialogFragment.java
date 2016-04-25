@@ -30,6 +30,7 @@ import java.util.Date;
  * <p>This {@code DialogFragment} is managed by {@link SlideDateTimePicker}.</p>
  *
  * @author jjobes
+ * @author Tony Bridges
  *
  */
 public class SlideDateTimeDialogFragment extends DialogFragment implements DateFragment.DateChangedListener,
@@ -44,9 +45,11 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
     private ViewPagerAdapter mViewPagerAdapter;
     private SlidingTabLayout mSlidingTabLayout;
     private View mButtonHorizontalDivider;
-    private View mButtonVerticalDivider;
+    private View mButtonVerticalDivider1;
+    private View mButtonVerticalDivider2;
     private Button mOkButton;
     private Button mCancelButton;
+    private Button mNoneButton;
     private Date mInitialDate;
     private int mTheme;
     private int mIndicatorColor;
@@ -184,8 +187,10 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         mViewPager = (CustomViewPager) v.findViewById(R.id.viewPager);
         mSlidingTabLayout = (SlidingTabLayout) v.findViewById(R.id.slidingTabLayout);
         mButtonHorizontalDivider = v.findViewById(R.id.buttonHorizontalDivider);
-        mButtonVerticalDivider = v.findViewById(R.id.buttonVerticalDivider);
+        mButtonVerticalDivider1 = v.findViewById(R.id.buttonVerticalDivider1);
+        mButtonVerticalDivider2 = v.findViewById(R.id.buttonVerticalDivider2);
         mOkButton = (Button) v.findViewById(R.id.okButton);
+        mNoneButton = (Button) v.findViewById(R.id.noneButton);
         mCancelButton = (Button) v.findViewById(R.id.cancelButton);
     }
 
@@ -197,9 +202,20 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
 
         // Set the colors of the horizontal and vertical lines for the
         // bottom buttons depending on the theme.
-        mButtonHorizontalDivider.setBackgroundColor(lineColor);
-        mButtonVerticalDivider1.setBackgroundColor(lineColor);
-        mButtonVerticalDivider2.setBackgroundColor(lineColor);
+        switch (mTheme)
+        {
+        case SlideDateTimePicker.HOLO_LIGHT:
+        case SlideDateTimePicker.HOLO_DARK:
+            mButtonHorizontalDivider.setBackgroundColor(lineColor);
+            mButtonVerticalDivider1.setBackgroundColor(lineColor);
+            mButtonVerticalDivider2.setBackgroundColor(lineColor);
+            break;
+
+        default:  // if no theme was specified, default to holo light
+            mButtonHorizontalDivider.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
+            mButtonVerticalDivider1.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
+            mButtonVerticalDivider2.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
+        }
 
         // Set the color of the selected tab underline if one was specified.
         if (mIndicatorColor != 0)
@@ -240,6 +256,23 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
                 }
 
                 mListener.onDateTimeSet(new Date(mCalendar.getTimeInMillis()));
+
+                dismiss();
+            }
+        });
+
+        mNoneButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v)
+            {
+                if (mListener == null)
+                {
+                    throw new NullPointerException(
+                            "Listener no longer exists for mNoneButton");
+                }
+
+                mListener.onDateTimeNone();
 
                 dismiss();
             }
