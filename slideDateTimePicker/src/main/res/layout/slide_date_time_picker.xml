@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.github.jjobes.slidedatetimepicker.SlidingTabLayout
+    <us.bridgeses.slidedatetimepicker.SlidingTabLayout
         android:id="@+id/slidingTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.github.jjobes.slidedatetimepicker.CustomViewPager
+    <us.bridgeses.slidedatetimepicker.CustomViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -44,9 +44,25 @@
             android:text="@android:string/cancel" />
 
         <!-- The vertical divider line between the two buttons -->
-
         <View
-            android:id="@+id/buttonVerticalDivider"
+            android:id="@+id/buttonVerticalDivider1"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/gray_holo_dark" />
+
+        <Button
+            android:id="@+id/noneButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/none" />
+
+        <!-- The vertical divider line between the two buttons -->
+        <View
+            android:id="@+id/buttonVerticalDivider2"
             android:layout_width="1px"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
