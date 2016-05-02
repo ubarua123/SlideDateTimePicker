@@ -1,4 +1,4 @@
-package com.github.jjobes.slidedatetimepicker.sample;
+package us.bridgeses.slidedatetimepicker.sample;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,8 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener;
-import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker;
+import us.bridgeses.slidedatetimepicker.SlideDateTimeListener;
+import us.bridgeses.slidedatetimepicker.SlideDateTimePicker;
 
 /**
  * Sample test class for SlideDateTimePicker.
@@ -42,6 +42,12 @@ public class SampleActivity extends FragmentActivity
         {
             Toast.makeText(SampleActivity.this,
                     "Canceled", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onDateTimeNone() {
+            Toast.makeText(SampleActivity.this,
+                    "None", Toast.LENGTH_SHORT).show();
         }
     };
 
