@@ -57,6 +57,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
     private Date mMaxDate;
     private boolean mIsClientSpecified24HourTime;
     private boolean mIs24HourTime;
+    private boolean mHasNone;
     private Calendar mCalendar;
     private int mDateFlags =
         DateUtils.FORMAT_SHOW_WEEKDAY |
@@ -88,6 +89,30 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
             Date initialDate, Date minDate, Date maxDate, boolean isClientSpecified24HourTime,
             boolean is24HourTime, int theme, int indicatorColor)
     {
+        return newInstance(listener, initialDate, minDate, maxDate, isClientSpecified24HourTime,
+                is24HourTime, false, theme, indicatorColor);
+    }
+
+    /**
+     * <p>Return a new instance of {@code SlideDateTimeDialogFragment} with its bundle
+     * filled with the incoming arguments.</p>
+     *
+     * <p>Called by {@link SlideDateTimePicker#show()}.</p>
+     *
+     * @param listener
+     * @param initialDate
+     * @param minDate
+     * @param maxDate
+     * @param isClientSpecified24HourTime
+     * @param is24HourTime
+     * @param theme
+     * @param indicatorColor
+     * @return
+     */
+    public static SlideDateTimeDialogFragment newInstance(SlideDateTimeListener listener,
+                  Date initialDate, Date minDate, Date maxDate, boolean isClientSpecified24HourTime,
+                  boolean is24HourTime, boolean hasNone, int theme, int indicatorColor)
+    {
         mListener = listener;
 
         // Create a new instance of SlideDateTimeDialogFragment
@@ -100,6 +125,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         bundle.putSerializable("maxDate", maxDate);
         bundle.putBoolean("isClientSpecified24HourTime", isClientSpecified24HourTime);
         bundle.putBoolean("is24HourTime", is24HourTime);
+        bundle.putBoolean("hasNone", hasNone);
         bundle.putInt("theme", theme);
         bundle.putInt("indicatorColor", indicatorColor);
         dialogFragment.setArguments(bundle);
@@ -178,6 +204,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         mMaxDate = (Date) args.getSerializable("maxDate");
         mIsClientSpecified24HourTime = args.getBoolean("isClientSpecified24HourTime");
         mIs24HourTime = args.getBoolean("is24HourTime");
+        mHasNone = args.getBoolean("hasNone");
         mTheme = args.getInt("theme");
         mIndicatorColor = args.getInt("indicatorColor");
     }
@@ -220,6 +247,10 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         // Set the color of the selected tab underline if one was specified.
         if (mIndicatorColor != 0)
             mSlidingTabLayout.setSelectedIndicatorColors(mIndicatorColor);
+        if (!mHasNone) {
+            mNoneButton.setVisibility(View.GONE);
+            mButtonVerticalDivider2.setVisibility(View.GONE);
+        }
     }
 
     private void initViewPager()

@@ -29,6 +29,7 @@ public class SlideDateTimePicker
     private Date mMaxDate;
     private boolean mIsClientSpecified24HourTime;
     private boolean mIs24HourTime;
+    private boolean mHasNone;
     private int mTheme;
     private int mIndicatorColor;
 
@@ -133,6 +134,10 @@ public class SlideDateTimePicker
         mIs24HourTime = is24HourTime;
     }
 
+    public void setHasNone(boolean hasNone) {
+        mHasNone = hasNone;
+    }
+
     /**
      * Sets the theme of the dialog. If no theme is specified, it
      * defaults to holo light.
@@ -157,7 +162,7 @@ public class SlideDateTimePicker
 
     /**
      * Shows the dialog to the user. Make sure to call
-     * {@link #setListener()} before calling this.
+     * setListener before calling this.
      */
     public void show()
     {
@@ -204,6 +209,7 @@ public class SlideDateTimePicker
         private Date maxDate;
         private boolean isClientSpecified24HourTime;
         private boolean is24HourTime;
+        private boolean hasNone;
         private int theme;
         private int indicatorColor;
 
@@ -258,6 +264,11 @@ public class SlideDateTimePicker
             return this;
         }
 
+        public Builder setHasNone(boolean hasNone) {
+            this.hasNone = hasNone;
+            return this;
+        }
+
         /**
          * @see SlideDateTimePicker#setTheme(int)
          */
@@ -293,6 +304,7 @@ public class SlideDateTimePicker
             picker.setMaxDate(maxDate);
             picker.setIsClientSpecified24HourTime(isClientSpecified24HourTime);
             picker.setIs24HourTime(is24HourTime);
+            picker.setHasNone(hasNone);
             picker.setTheme(theme);
             picker.setIndicatorColor(indicatorColor);
 

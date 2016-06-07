@@ -38,6 +38,10 @@ public abstract class SlideDateTimeListener
 
     /**
      * Informs the client when the user selects "None".
+     * This override is optional.
      */
-    public abstract void onDateTimeNone();
+    public void onDateTimeNone()
+    {
+
+    }
 }
