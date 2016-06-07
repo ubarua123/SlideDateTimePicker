@@ -3,6 +3,9 @@ package com.github.jjobes.slidedatetimepicker;
 import java.lang.reflect.Field;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.NumberPicker;
@@ -20,10 +23,14 @@ public class CustomTimePicker extends TimePicker
 {
     private static final String TAG = "CustomTimePicker";
 
-    public CustomTimePicker(Context context, AttributeSet attrs)
-    {
+    public CustomTimePicker(Context context, AttributeSet attrs) {
         super(context, attrs);
+        Log.e(TAG, "In constructor");
 
+        changeDivider(Color.RED);
+    }
+
+    private void changeDivider(int color) {
         Class<?> idClass = null;
         Class<?> numberPickerClass = null;
         Field selectionDividerField = null;
@@ -55,9 +62,11 @@ public class CustomTimePicker extends TimePicker
             // to refer to our custom drawables
             selectionDividerField = numberPickerClass.getDeclaredField("mSelectionDivider");
             selectionDividerField.setAccessible(true);
-            selectionDividerField.set(hourNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
-            selectionDividerField.set(minuteNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
-            selectionDividerField.set(amPmNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
+            Drawable divider = getResources().getDrawable(R.drawable.selection_divider);
+            divider.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            selectionDividerField.set(hourNumberPicker, divider);
+            selectionDividerField.set(minuteNumberPicker, divider);
+            selectionDividerField.set(amPmNumberPicker, divider);
         }
         catch (ClassNotFoundException e)
         {
@@ -75,5 +84,10 @@ public class CustomTimePicker extends TimePicker
         {
             Log.e(TAG, "IllegalArgumentException in CustomTimePicker", e);
         }
+    }
+
+    public void setColor(int color) {
+        changeDivider(color);
+        invalidate();
     }
 }

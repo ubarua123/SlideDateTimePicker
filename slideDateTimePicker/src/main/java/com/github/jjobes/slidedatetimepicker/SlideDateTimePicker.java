@@ -5,6 +5,7 @@ import java.util.Date;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 
 /**
  * <p>This class contains methods for the library client to create
@@ -41,7 +42,8 @@ public class SlideDateTimePicker
     {
         // See if there are any DialogFragments from the FragmentManager
         FragmentTransaction ft = fm.beginTransaction();
-        Fragment prev = fm.findFragmentByTag(SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
+        Fragment prev = fm
+                .findFragmentByTag(SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
 
         // Remove if found
         if (prev != null)
@@ -159,6 +161,7 @@ public class SlideDateTimePicker
      */
     public void show()
     {
+        Log.e("SDTP", "Showing SDTP");
         if (mListener == null)
         {
             throw new NullPointerException(

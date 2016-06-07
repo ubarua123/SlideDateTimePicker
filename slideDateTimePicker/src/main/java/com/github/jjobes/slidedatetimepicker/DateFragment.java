@@ -3,6 +3,7 @@ package com.github.jjobes.slidedatetimepicker;
 import java.util.Date;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.ContextThemeWrapper;
@@ -90,6 +91,38 @@ public class DateFragment extends Fragment
     }
 
     /**
+     * Return an instance of DateFragment with its bundle filled with the
+     * constructor arguments. The values in the bundle are retrieved in
+     * {@link #onCreateView()} below to properly initialize the DatePicker.
+     *
+     * @param theme
+     * @param year
+     * @param month
+     * @param day
+     * @param minDate
+     * @param maxDate
+     * @return an instance of DateFragment
+     */
+    public static final DateFragment newInstance(int theme, int year, int month,
+                                                 int day, Date minDate, Date maxDate,
+                                                 int dividerColor)
+    {
+        DateFragment f = new DateFragment();
+
+        Bundle b = new Bundle();
+        b.putInt("theme", theme);
+        b.putInt("year", year);
+        b.putInt("month", month);
+        b.putInt("day", day);
+        b.putSerializable("minDate", minDate);
+        b.putSerializable("maxDate", maxDate);
+        b.putInt("dividerColor", dividerColor);
+        f.setArguments(b);
+
+        return f;
+    }
+
+    /**
      * Create and return the user interface view for this fragment.
      */
     @Override
@@ -102,6 +135,7 @@ public class DateFragment extends Fragment
         int initialDay = getArguments().getInt("day");
         Date minDate = (Date) getArguments().getSerializable("minDate");
         Date maxDate = (Date) getArguments().getSerializable("maxDate");
+        int dividerColor = getArguments().getInt("dividerColor", Color.GREEN);
 
         // Unless we inflate using a cloned inflater with a Holo theme,
         // on Lollipop devices the DatePicker will be the new-style
@@ -135,7 +169,7 @@ public class DateFragment extends Fragment
                     mCallback.onDateChanged(year, monthOfYear, dayOfMonth);
                 }
             });
-
+        mDatePicker.setColor(dividerColor);
         if (minDate != null)
             mDatePicker.setMinDate(minDate.getTime());
 

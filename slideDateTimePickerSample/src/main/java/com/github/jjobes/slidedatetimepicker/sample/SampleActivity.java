@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -64,8 +65,8 @@ public class SampleActivity extends FragmentActivity
                     //.setMinDate(minDate)
                     //.setMaxDate(maxDate)
                     //.setIs24HourTime(true)
-                    //.setTheme(SlideDateTimePicker.HOLO_DARK)
-                    //.setIndicatorColor(Color.parseColor("#990000"))
+                    .setTheme(SlideDateTimePicker.HOLO_DARK)
+                    .setIndicatorColor(Color.BLUE)
                     .build()
                     .show();
             }
