@@ -49,15 +49,10 @@ public class TimeFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
-        try
-        {
-            mCallback = (TimeChangedListener) getTargetFragment();
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException("Calling fragment must implement " +
-                "TimeFragment.TimeChangedListener interface");
+        try {
+            mCallback = (TimeChangedListener) getParentFragment();
+        } catch (ClassCastException e) {
+            throw new ClassCastException("Calling fragment must implement " + "TimeFragment.TimeChangedListener interface");
         }
     }
 

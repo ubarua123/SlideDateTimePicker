@@ -1,9 +1,5 @@
 package com.github.jjobes.slidedatetimepicker;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -20,6 +16,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * <p>The {@code DialogFragment} that contains the {@link SlidingTabLayout}
@@ -369,29 +369,28 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         @Override
         public Fragment getItem(int position)
         {
-            switch (position)
-            {
-            case 0:
-                DateFragment dateFragment = DateFragment.newInstance(
-                    mTheme,
-                    mCalendar.get(Calendar.YEAR),
-                    mCalendar.get(Calendar.MONTH),
-                    mCalendar.get(Calendar.DAY_OF_MONTH),
-                    mMinDate,
-                    mMaxDate);
-                dateFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 100);
-                return dateFragment;
-            case 1:
-                TimeFragment timeFragment = TimeFragment.newInstance(
-                    mTheme,
-                    mCalendar.get(Calendar.HOUR_OF_DAY),
-                    mCalendar.get(Calendar.MINUTE),
-                    mIsClientSpecified24HourTime,
-                    mIs24HourTime);
-                timeFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 200);
-                return timeFragment;
-            default:
-                return null;
+            switch (position) {
+                case 0:
+                    DateFragment dateFragment = DateFragment.newInstance(
+                            mTheme,
+                            mCalendar.get(Calendar.YEAR),
+                            mCalendar.get(Calendar.MONTH),
+                            mCalendar.get(Calendar.DAY_OF_MONTH),
+                            mMinDate,
+                            mMaxDate);
+                    //  dateFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 100);
+                    return dateFragment;
+                case 1:
+                    TimeFragment timeFragment = TimeFragment.newInstance(
+                            mTheme,
+                            mCalendar.get(Calendar.HOUR_OF_DAY),
+                            mCalendar.get(Calendar.MINUTE),
+                            mIsClientSpecified24HourTime,
+                            mIs24HourTime);
+                    // timeFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 200);
+                    return timeFragment;
+                default:
+                    return null;
             }
         }
 
