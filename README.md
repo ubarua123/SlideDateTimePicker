@@ -15,7 +15,7 @@ To add this library to your project, add the following to your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile("com.github.pwiniars:SlideDateTimePicker:v1.0.7")
+    compile("com.github.pwiniars:SlideDateTimePicker:v1.0.8")
 }
 ```
 
@@ -106,7 +106,7 @@ Contributions are welcome. Please open up an issue in GitHub or submit a PR.
 
 Changelog
 =========
-### v1.0.7
+### v1.0.8
 
 * Fixed issue with invisible time and date selectors on Android O
 * Fixed issue with build tools 26
