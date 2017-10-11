@@ -71,6 +71,9 @@ public class CustomViewPager extends ViewPager
         }
         // super has to be called again so the new specs are treated as exact measurements
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        
+        mDatePicker = (DatePicker) findViewById(R.id.datePicker);
+        mTimePicker = (TimePicker) findViewById(R.id.timePicker);
     }
 
     /**
