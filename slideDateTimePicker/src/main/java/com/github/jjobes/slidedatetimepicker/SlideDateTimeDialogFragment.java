@@ -44,7 +44,8 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
     private ViewPagerAdapter mViewPagerAdapter;
     private SlidingTabLayout mSlidingTabLayout;
     private View mButtonHorizontalDivider;
-    private View mButtonVerticalDivider;
+    private View mButtonVerticalDivider1;
+    private View mButtonVerticalDivider2;
     private Button mOkButton;
     private Button mCancelButton;
     private Date mInitialDate;
@@ -184,7 +185,8 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         mViewPager = (CustomViewPager) v.findViewById(R.id.viewPager);
         mSlidingTabLayout = (SlidingTabLayout) v.findViewById(R.id.slidingTabLayout);
         mButtonHorizontalDivider = v.findViewById(R.id.buttonHorizontalDivider);
-        mButtonVerticalDivider = v.findViewById(R.id.buttonVerticalDivider);
+        mButtonVerticalDivider1 = v.findViewById(R.id.buttonVerticalDivider1);
+        mButtonVerticalDivider2 = v.findViewById(R.id.buttonVerticalDivider2);
         mOkButton = (Button) v.findViewById(R.id.okButton);
         mCancelButton = (Button) v.findViewById(R.id.cancelButton);
     }

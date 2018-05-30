@@ -31,8 +31,9 @@
     <!-- Footer button bar -->
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="300dp"
         android:orientation="horizontal" >
 
         <Button
@@ -44,9 +45,25 @@
             android:text="@android:string/cancel" />
 
         <!-- The vertical divider line between the two buttons -->
-
         <View
-            android:id="@+id/buttonVerticalDivider"
+            android:id="@+id/buttonVerticalDivider1"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/gray_holo_dark" />
+
+        <Button
+            android:id="@+id/noneButton"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@null" />
+
+        <!-- The vertical divider line between the two buttons -->
+        <View
+            android:id="@+id/buttonVerticalDivider2"
             android:layout_width="1px"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
