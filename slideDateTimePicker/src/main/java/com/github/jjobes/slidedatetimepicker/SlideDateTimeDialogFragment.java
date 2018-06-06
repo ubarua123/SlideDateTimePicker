@@ -197,9 +197,18 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
 
         // Set the colors of the horizontal and vertical lines for the
         // bottom buttons depending on the theme.
-        mButtonHorizontalDivider.setBackgroundColor(lineColor);
-        mButtonVerticalDivider1.setBackgroundColor(lineColor);
-        mButtonVerticalDivider2.setBackgroundColor(lineColor);
+        switch (mTheme)
+        {
+        case SlideDateTimePicker.HOLO_LIGHT:
+        case SlideDateTimePicker.HOLO_DARK:
+            mButtonHorizontalDivider.setBackgroundColor(lineColor);
+            mButtonVerticalDivider.setBackgroundColor(lineColor);
+            break;
+
+        default:  // if no theme was specified, default to holo light
+            mButtonHorizontalDivider.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
+            mButtonVerticalDivider.setBackgroundColor(getResources().getColor(R.color.gray_holo_light));
+        }
 
         // Set the color of the selected tab underline if one was specified.
         if (mIndicatorColor != 0)
@@ -219,7 +228,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
 
     private void initTabs()
     {
-        // Set initial date on date tab
+        // Set intial date on date tab
         updateDateTab();
 
         // Set initial time on time tab
@@ -360,31 +369,28 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         @Override
         public Fragment getItem(int position)
         {
-            switch (position)
-            {
-            case 0:
-                DateFragment dateFragment = DateFragment.newInstance(
-                    mTheme,
-                    mCalendar.get(Calendar.YEAR),
-                    mCalendar.get(Calendar.MONTH),
-                    mCalendar.get(Calendar.DAY_OF_MONTH),
-                    mMinDate,
-                    mMaxDate,
-                    mIndicatorColor);
-                dateFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 100);
-                return dateFragment;
-            case 1:
-                TimeFragment timeFragment = TimeFragment.newInstance(
-                    mTheme,
-                    mCalendar.get(Calendar.HOUR_OF_DAY),
-                    mCalendar.get(Calendar.MINUTE),
-                    mIsClientSpecified24HourTime,
-                    mIs24HourTime,
-                    mIndicatorColor);
-                timeFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 200);
-                return timeFragment;
-            default:
-                return null;
+            switch (position) {
+                case 0:
+                    DateFragment dateFragment = DateFragment.newInstance(
+                            mTheme,
+                            mCalendar.get(Calendar.YEAR),
+                            mCalendar.get(Calendar.MONTH),
+                            mCalendar.get(Calendar.DAY_OF_MONTH),
+                            mMinDate,
+                            mMaxDate);
+                    //  dateFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 100);
+                    return dateFragment;
+                case 1:
+                    TimeFragment timeFragment = TimeFragment.newInstance(
+                            mTheme,
+                            mCalendar.get(Calendar.HOUR_OF_DAY),
+                            mCalendar.get(Calendar.MINUTE),
+                            mIsClientSpecified24HourTime,
+                            mIs24HourTime);
+                    // timeFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 200);
+                    return timeFragment;
+                default:
+                    return null;
             }
         }
 

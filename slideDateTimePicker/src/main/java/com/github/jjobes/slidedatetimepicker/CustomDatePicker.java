@@ -3,9 +3,6 @@ package com.github.jjobes.slidedatetimepicker;
 import java.lang.reflect.Field;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.DatePicker;
@@ -27,10 +24,6 @@ public class CustomDatePicker extends DatePicker
     {
         super(context, attrs);
 
-        changeDivider(Color.RED);
-    }
-
-    private void changeDivider(int color) {
         Class<?> idClass = null;
         Class<?> numberPickerClass = null;
         Field selectionDividerField = null;
@@ -62,12 +55,9 @@ public class CustomDatePicker extends DatePicker
             // to refer to our custom drawables
             selectionDividerField = numberPickerClass.getDeclaredField("mSelectionDivider");
             selectionDividerField.setAccessible(true);
-            Drawable divider = getResources().getDrawable(R.drawable.selection_divider);
-            divider.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-            selectionDividerField.set(monthNumberPicker, divider);
-            selectionDividerField.set(dayNumberPicker, divider);
-            selectionDividerField.set(yearNumberPicker, divider);
-
+            selectionDividerField.set(monthNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
+            selectionDividerField.set(dayNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
+            selectionDividerField.set(yearNumberPicker, getResources().getDrawable(R.drawable.selection_divider));
         }
         catch (ClassNotFoundException e)
         {
@@ -85,10 +75,5 @@ public class CustomDatePicker extends DatePicker
         {
             Log.e(TAG, "IllegalArgumentException in CustomDatePicker", e);
         }
-    }
-
-    public void setColor(int color) {
-        changeDivider(color);
-        invalidate();
     }
 }

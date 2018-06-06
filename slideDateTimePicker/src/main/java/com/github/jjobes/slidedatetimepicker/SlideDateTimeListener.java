@@ -12,7 +12,7 @@ import java.util.Date;
  * touches outside the dialog or presses the device's Back button.</p>
  *
  * @author jjobes
- * @author Tony Bridges
+ *
  */
 public abstract class SlideDateTimeListener
 {

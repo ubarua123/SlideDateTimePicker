@@ -1,12 +1,10 @@
 package com.github.jjobes.slidedatetimepicker;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +34,7 @@ public class TimeFragment extends Fragment
     }
 
     private TimeChangedListener mCallback;
-    private CustomTimePicker mTimePicker;
+    private TimePicker mTimePicker;
 
     public TimeFragment()
     {
@@ -87,35 +85,6 @@ public class TimeFragment extends Fragment
     }
 
     /**
-     * Return an instance of TimeFragment with its bundle filled with the
-     * constructor arguments. The values in the bundle are retrieved in
-     * {@link #onCreateView()} below to properly initialize the TimePicker.
-     *
-     * @param theme
-     * @param hour
-     * @param minute
-     * @param isClientSpecified24HourTime
-     * @param is24HourTime
-     * @return
-     */
-    public static final TimeFragment newInstance(int theme, int hour, int minute,
-                     boolean isClientSpecified24HourTime, boolean is24HourTime, int dividerColor)
-    {
-        TimeFragment f = new TimeFragment();
-
-        Bundle b = new Bundle();
-        b.putInt("theme", theme);
-        b.putInt("hour", hour);
-        b.putInt("minute", minute);
-        b.putBoolean("isClientSpecified24HourTime", isClientSpecified24HourTime);
-        b.putBoolean("is24HourTime", is24HourTime);
-        b.putInt("dividerColor", dividerColor);
-        f.setArguments(b);
-
-        return f;
-    }
-
-    /**
      * Create and return the user interface view for this fragment.
      */
     @Override
@@ -127,7 +96,6 @@ public class TimeFragment extends Fragment
         int initialMinute = getArguments().getInt("minute");
         boolean isClientSpecified24HourTime = getArguments().getBoolean("isClientSpecified24HourTime");
         boolean is24HourTime = getArguments().getBoolean("is24HourTime");
-        int dividerColor = getArguments().getInt("dividerColor", Color.GREEN);
 
         // Unless we inflate using a cloned inflater with a Holo theme,
         // on Lollipop devices the TimePicker will be the new-style
@@ -145,8 +113,7 @@ public class TimeFragment extends Fragment
 
         View v = localInflater.inflate(R.layout.fragment_time, container, false);
 
-        mTimePicker = (CustomTimePicker) v.findViewById(R.id.timePicker);
-        mTimePicker.setColor(dividerColor);
+        mTimePicker = (TimePicker) v.findViewById(R.id.timePicker);
         // block keyboard popping up on touch
         mTimePicker.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
         mTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
