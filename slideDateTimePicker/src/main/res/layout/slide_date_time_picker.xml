@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <us.bridgeses.slidedatetimepicker.SlidingTabLayout
+    <com.github.jjobes.slidedatetimepicker.SlidingTabLayout
         android:id="@+id/slidingTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <us.bridgeses.slidedatetimepicker.CustomViewPager
+    <com.github.jjobes.slidedatetimepicker.CustomViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
