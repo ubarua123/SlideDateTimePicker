@@ -435,7 +435,6 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
                     mMinDate,
                     mMaxDate,
                     mIndicatorColor);
-                dateFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 100);
                 return dateFragment;
             case 1:
                 TimeFragment timeFragment = TimeFragment.newInstance(
@@ -445,7 +444,6 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
                     mIsClientSpecified24HourTime,
                     mIs24HourTime,
                     mIndicatorColor);
-                timeFragment.setTargetFragment(SlideDateTimeDialogFragment.this, 200);
                 return timeFragment;
             default:
                 return null;
